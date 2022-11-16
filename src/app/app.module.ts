@@ -7,6 +7,7 @@ import { LoginComponent } from './auth/login.component';
 import { RegistraionComponent } from './auth/registraion.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoginLayoutComponent } from './auth/login-layout.component';
 
 // @Component({
 //   selector:"joker",
@@ -105,7 +106,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations: [
     AppComponent,
     LoginComponent,
-    RegistraionComponent
+    RegistraionComponent,
+    LoginLayoutComponent
   ],
   //the other angualr modules that export material we need in this angular module.
   imports: [
