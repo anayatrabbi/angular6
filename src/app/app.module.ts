@@ -1,14 +1,19 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { Input, NgModule, Output , EventEmitter } from '@angular/core';
+import { BrowserModule } from "@angular/platform-browser";
+import { Input, NgModule, Output, EventEmitter } from "@angular/core";
 
-import { AppComponent } from './app.component';
-import { Component } from '@angular/core';
-import { LoginComponent } from './auth/login.component';
-import { RegistraionComponent } from './auth/registraion.component';
-import { AppRoutingModule } from './app-routing.module';
-import { ReactiveFormsModule } from '@angular/forms';
-import { LoginLayoutComponent } from './auth/login-layout.component';
-
+import { AppComponent } from "./app.component";
+import { Component } from "@angular/core";
+import { LoginComponent } from "./auth/login.component";
+import { RegistraionComponent } from "./auth/registraion.component";
+import { AppRoutingModule } from "./app-routing.module";
+import { ReactiveFormsModule } from "@angular/forms";
+import { LoginLayoutComponent } from "./auth/login-layout.component";
+import { UserListComponent } from "./user/components/list/user-list.component";
+import { UserLayoutComponent } from "./user/components/Layout/user-layout.component";
+import { UserProfileComponent } from "./user/components/profile/user-profile.component";
+import { UserService } from "./user/user.service";
+import { HttpClientModule } from "@angular/common/http";
+import { UserListResolverService } from "./user/user-list-resolver.service";
 // @Component({
 //   selector:"joker",
 //   template:`<div>
@@ -107,17 +112,21 @@ import { LoginLayoutComponent } from './auth/login-layout.component';
     AppComponent,
     LoginComponent,
     RegistraionComponent,
-    LoginLayoutComponent
+    LoginLayoutComponent,
+    UserListComponent,
+    UserLayoutComponent,
+    UserProfileComponent,
   ],
   //the other angualr modules that export material we need in this angular module.
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
 
-  providers: [],
+  providers: [UserService, UserListResolverService],
   //Identifies the root component that Angular should bootstrap when it starts the application.
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

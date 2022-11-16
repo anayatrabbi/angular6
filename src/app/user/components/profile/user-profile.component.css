@@ -1,0 +1,11 @@
+.section {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+  font-size: medium;
+}
+
+.mainSection {
+  background-color: wheat;
+  padding: 4px;
+}
