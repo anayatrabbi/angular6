@@ -1,19 +1,18 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { Input, NgModule, Output, EventEmitter } from "@angular/core";
+import { HttpClientModule } from "@angular/common/http";
+import { ReactiveFormsModule } from "@angular/forms";
+
+import { AppRoutingModule } from "./app-routing.module";
+
+import { UserService } from "./user/user.service";
+import { UserListResolverService } from "./user/user-list-resolver.service";
 
 import { AppComponent } from "./app.component";
-import { Component } from "@angular/core";
 import { LoginComponent } from "./auth/login.component";
 import { RegistraionComponent } from "./auth/registraion.component";
-import { AppRoutingModule } from "./app-routing.module";
-import { ReactiveFormsModule } from "@angular/forms";
 import { LoginLayoutComponent } from "./auth/login-layout.component";
-import { UserListComponent } from "./user/components/list/user-list.component";
-import { UserLayoutComponent } from "./user/components/Layout/user-layout.component";
-import { UserProfileComponent } from "./user/components/profile/user-profile.component";
-import { UserService } from "./user/user.service";
-import { HttpClientModule } from "@angular/common/http";
-import { UserListResolverService } from "./user/user-list-resolver.service";
+
 // @Component({
 //   selector:"joker",
 //   template:`<div>
@@ -113,9 +112,9 @@ import { UserListResolverService } from "./user/user-list-resolver.service";
     LoginComponent,
     RegistraionComponent,
     LoginLayoutComponent,
-    UserListComponent,
-    UserLayoutComponent,
-    UserProfileComponent,
+    // UserListComponent,
+    // UserLayoutComponent,
+    // UserProfileComponent,
   ],
   //the other angualr modules that export material we need in this angular module.
   imports: [

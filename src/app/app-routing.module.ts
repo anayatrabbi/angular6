@@ -4,10 +4,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { LoginLayoutComponent } from "./auth/login-layout.component";
 import { LoginComponent } from "./auth/login.component";
 import { RegistraionComponent } from "./auth/registraion.component";
-import { UserLayoutComponent } from "./user/components/Layout/user-layout.component";
-import { UserListComponent } from "./user/components/list/user-list.component";
-import { UserProfileComponent } from "./user/components/profile/user-profile.component";
-import { UserListResolverService } from "./user/user-list-resolver.service";
+
 //step-2
 const routes: Routes = [
   {
@@ -16,21 +13,10 @@ const routes: Routes = [
     children: [
       { path: "login", component: LoginComponent },
       { path: "registration", component: RegistraionComponent },
+      { path: "user", loadChildren: "./user/user.module#UserModule" },
+      { path: "**", component: LoginComponent },
     ],
   },
-  {
-    path: "user",
-    component: UserLayoutComponent,
-    children: [
-      {
-        path: "",
-        component: UserListComponent,
-        resolve: { userList: UserListResolverService },
-      },
-      { path: ":id", component: UserProfileComponent },
-    ],
-  },
-
   // { path: "", redirectTo: "login", pathMatch: "full" },
 ];
 

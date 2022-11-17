@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+import { IUser } from "../../IUser";
+import { UserService } from "../../user.service";
 
 @Component({
   selector: "app-user-profile",
@@ -7,9 +9,18 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./user-profile.component.css"],
 })
 export class UserProfileComponent implements OnInit {
-  constructor(private route: ActivatedRoute) {
-    this.route.params.subscribe((params) => console.log(params));
-  }
+  user: IUser;
 
-  ngOnInit() {}
+  constructor(
+    private route: ActivatedRoute,
+    private _userService: UserService
+  ) {}
+
+  ngOnInit() {
+    this.route.params.subscribe((params) => {
+      this._userService.getUser(params.id).subscribe((data) => {
+        this.user = data;
+      });
+    });
+  }
 }

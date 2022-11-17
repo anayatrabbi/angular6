@@ -1,9 +1,13 @@
 //when we create a service we decoreate with injectable decoreator
 //this decorator only needed if we habe any dependency
 
-import { HttpClient } from "@angular/common/http";
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable, throwError } from "rxjs";
 import { of } from "rxjs";
 import { retryWhen, map, mergeMap, delay } from "rxjs/operators";
 import { IUser } from "./IUser";
@@ -36,12 +40,40 @@ export class UserService {
     // return of(this.listOfUser);
   }
 
-  //   registerUser(user: IUser) {
-  //     this.listOfUser.push(user);
-  //   }
-  registerUser() {
-    console.log("lets register the value");
+  private handleError(errorResponse: HttpErrorResponse) {
+    if (errorResponse.error instanceof ErrorEvent) {
+      console.log("client side error", errorResponse.error);
+    } else {
+      console.log("server side error", errorResponse.error);
+    }
+
+    return throwError("there is a problem with service");
   }
+
+  getUser(id: number): Observable<IUser> {
+    return this._httpClient.get<IUser>(`${this.baseUrl}/${id}`);
+  }
+
+  deleteUser(id: number): Observable<void> {
+    return this._httpClient.delete<void>(`${this.baseUrl}/${id}`);
+  }
+
+  // updateUser(user: IUser): Observable<void>{
+  //   return this._httpClient.put(`${this.baseUrl}/${user}` , Head)
+  // }
+  addUser(user: IUser): Observable<IUser> {
+    console.log("registration method is callled", user);
+    // this.listOfUser.push(user);
+    return this._httpClient.post<IUser>(this.baseUrl, user, {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+      }),
+    });
+  }
+
+  // registerUser() {
+  //   console.log("lets register the value");
+  // }
 }
 
 //aftere creating a service to use we need to register it

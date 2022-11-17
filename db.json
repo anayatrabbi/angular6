@@ -13,20 +13,6 @@
           "experience": "3"
         }
       ]
-    },
-    {
-      "id": 2,
-      "firstName": "nafij ",
-      "lastName": "khan",
-      "email": "ana@asthait.com",
-      "password": "12345",
-      "role": "user",
-      "skills": [
-        {
-          "skillName": "c#",
-          "experience": "3"
-        }
-      ]
     }
   ]
 }

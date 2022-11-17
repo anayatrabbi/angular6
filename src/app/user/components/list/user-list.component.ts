@@ -14,9 +14,7 @@ export class UserListComponent implements OnInit {
     private _useService: UserService,
     private _router: Router,
     private _route: ActivatedRoute
-  ) {
-    this.users = this._route.snapshot.data["userList"];
-  }
+  ) {}
 
   ngOnInit() {
     //as it is observable so we need to subscribe on it
@@ -24,6 +22,19 @@ export class UserListComponent implements OnInit {
     // this._useService
     //   .getUsers()
     //   .subscribe((userList) => (this.users = userList));
+    this.users = this._route.snapshot.data["userList"];
     console.log(this.users);
+  }
+
+  editUser(user: IUser) {}
+
+  deleteUser(user: IUser) {
+    this._useService.deleteUser(user.id).subscribe(() => {
+      console.log(`employee id  ${user.id} is deleted`);
+      const i = this.users.findIndex((e) => e.id === user.id);
+      if (i !== -1) {
+        this.users.splice(i, 1);
+      }
+    });
   }
 }

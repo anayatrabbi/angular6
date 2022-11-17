@@ -8,6 +8,7 @@ import {
   AbstractControl,
 } from "@angular/forms";
 import { Router } from "@angular/router";
+import { IUser } from "../user/IUser";
 import { UserService } from "../user/user.service";
 
 @Component({
@@ -18,6 +19,7 @@ import { UserService } from "../user/user.service";
 export class RegistraionComponent implements OnInit {
   registrationForm: FormGroup;
   //we need to inject service class at constructor
+  user: IUser;
   constructor(
     private fb: FormBuilder,
     private _userService: UserService,
@@ -53,6 +55,10 @@ export class RegistraionComponent implements OnInit {
     this.registrationForm.valueChanges.subscribe((data: any) => {
       this.logKeyValuePayers(this.registrationForm);
     });
+  }
+
+  mapFormDataToUserModel() {
+    this.user = this.registrationForm.value;
   }
 
   //we can keep some validation msg , and checking it for loop we will populate anothe object and will show it at browser
@@ -109,10 +115,16 @@ export class RegistraionComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.mapFormDataToUserModel();
     this.logKeyValuePayers(this.registrationForm);
-    console.log(this.formErrors);
-    this._userService.registerUser();
-    this._route.navigate(["user"]);
+    // console.log(this.formErrors);
+    // console.log(this.registrationForm.value);
+    // console.log(this.user);
+    this._userService.addUser(this.user).subscribe((data: IUser) => {
+      console.log("after susbscribing", data);
+      // this.registrationForm.reset();
+      this._route.navigate(["user"]);
+    });
   }
 }
 
