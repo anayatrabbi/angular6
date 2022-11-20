@@ -1,6 +1,8 @@
 import { NgModule } from "@angular/core";
 //step1 import routermodule and routes
 import { RouterModule, Routes } from "@angular/router";
+import { AuthGuard } from "../gaurd";
+import UserGaurd from "../gaurd/user.gaurd";
 import { UserLayoutComponent } from "./components/Layout/user-layout.component";
 import { UserListComponent } from "./components/list/user-list.component";
 import { UserProfileComponent } from "./components/profile/user-profile.component";
@@ -15,8 +17,9 @@ const routes: Routes = [
         path: "",
         component: UserListComponent,
         resolve: { userList: UserListResolverService },
+        canActivate: [AuthGuard]
       },
-      { path: ":id", component: UserProfileComponent },
+      { path: ":id", component: UserProfileComponent , canActivate:[UserGaurd] },
     ],
   },
 

@@ -4,6 +4,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { LoginLayoutComponent } from "./auth/login-layout.component";
 import { LoginComponent } from "./auth/login.component";
 import { RegistraionComponent } from "./auth/registraion.component";
+import { AuthGuard } from "./gaurd";
 
 //step-2
 const routes: Routes = [
@@ -13,7 +14,10 @@ const routes: Routes = [
     children: [
       { path: "login", component: LoginComponent },
       { path: "registration", component: RegistraionComponent },
-      { path: "user", loadChildren: "./user/user.module#UserModule" },
+      {
+        path: "user",
+        loadChildren: "./user/user.module#UserModule",
+      },
       { path: "**", component: LoginComponent },
     ],
   },

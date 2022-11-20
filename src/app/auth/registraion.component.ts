@@ -116,15 +116,31 @@ export class RegistraionComponent implements OnInit {
 
   onSubmit(): void {
     this.mapFormDataToUserModel();
-    this.logKeyValuePayers(this.registrationForm);
     // console.log(this.formErrors);
     // console.log(this.registrationForm.value);
     // console.log(this.user);
-    this._userService.addUser(this.user).subscribe((data: IUser) => {
-      console.log("after susbscribing", data);
-      // this.registrationForm.reset();
-      this._route.navigate(["user"]);
-    });
+    console.log(this.registrationForm.dirty);
+    if (this.registrationForm.dirty) {
+      this.logKeyValuePayers(this.registrationForm);
+      this._userService.addUser(this.user).subscribe((data: IUser) => {
+        console.log("after susbscribing", data);
+        // this.registrationForm.reset();
+        localStorage.setItem(
+          "currentUser",
+          JSON.stringify({
+            email: data.email,
+            password: data.password,
+            role: data.role,
+            id: data.id,
+          })
+        );
+        if (data.role == "admin") {
+          this._route.navigate(["user"]);
+        } else {
+          this._route.navigate([`user/${data.id}`]);
+        }
+      });
+    }
   }
 }
 
