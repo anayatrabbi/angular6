@@ -12,6 +12,9 @@ import { AppComponent } from "./app.component";
 import { LoginComponent } from "./auth/login.component";
 import { RegistraionComponent } from "./auth/registraion.component";
 import { LoginLayoutComponent } from "./auth/login-layout.component";
+import { AlertService } from "./services/alert.service";
+import { AlertComponent } from "./directives";
+// import { AlertComponent } from "./directives/alert.component";
 
 // @Component({
 //   selector:"joker",
@@ -112,6 +115,7 @@ import { LoginLayoutComponent } from "./auth/login-layout.component";
     LoginComponent,
     RegistraionComponent,
     LoginLayoutComponent,
+    AlertComponent,
     // UserListComponent,
     // UserLayoutComponent,
     // UserProfileComponent,
@@ -124,7 +128,7 @@ import { LoginLayoutComponent } from "./auth/login-layout.component";
     HttpClientModule,
   ],
 
-  providers: [UserService, UserListResolverService],
+  providers: [UserService, UserListResolverService , AlertService],
   //Identifies the root component that Angular should bootstrap when it starts the application.
   bootstrap: [AppComponent],
 })

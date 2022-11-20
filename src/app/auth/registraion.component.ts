@@ -8,6 +8,7 @@ import {
   AbstractControl,
 } from "@angular/forms";
 import { Router } from "@angular/router";
+import { AlertService } from "../services/alert.service";
 import { IUser } from "../user/IUser";
 import { UserService } from "../user/user.service";
 
@@ -23,7 +24,8 @@ export class RegistraionComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private _userService: UserService,
-    private _route: Router
+    private _route: Router,
+    private _alert: AlertService
   ) {}
 
   //Invoked when given component has been initialized.
@@ -134,12 +136,17 @@ export class RegistraionComponent implements OnInit {
             id: data.id,
           })
         );
-        if (data.role == "admin") {
-          this._route.navigate(["user"]);
-        } else {
-          this._route.navigate([`user/${data.id}`]);
-        }
+        this._alert.success('registration successfull' , true);
+        // if (data.role == "admin") {
+        //   this._route.navigate(["user"]);
+        // } else {
+        //   this._route.navigate([`user/${data.id}`]);
+        // }
+        this._route.navigate(["login"])
       });
+    }
+    else{
+      this._alert.error("plese fill all the field" , true)
     }
   }
 }

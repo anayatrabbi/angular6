@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { AuthenticationService } from "../services";
+import { AlertService } from "../services/alert.service";
 
 @Component({
   selector: "app-login",
@@ -9,7 +10,7 @@ import { AuthenticationService } from "../services";
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  constructor(private authservice: AuthenticationService) {}
+  constructor(private authservice: AuthenticationService , private _alertService: AlertService) {}
 
   ngOnInit() {
     this.loginForm = new FormGroup({
@@ -19,10 +20,15 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.authservice.login({
-      email: this.loginForm.get("email").value,
-      password: this.loginForm.get("password").value,
-    });
+    if(this.loginForm.dirty){
+      this.authservice.login({
+        email: this.loginForm.get("email").value,
+        password: this.loginForm.get("password").value,
+      });
+    }
+    else{
+      this._alertService.error("please fill all the fields correctly" , true)
+    }
   }
 
   onLogout(): void {

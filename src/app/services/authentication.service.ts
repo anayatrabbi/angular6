@@ -5,24 +5,28 @@ import { IUser } from "../user/IUser";
 import { Observable } from "rxjs";
 import { UserService } from "../user/user.service";
 import { Router } from "@angular/router";
+import { AlertService } from "./alert.service";
 
 @Injectable({ providedIn: "root" })
 export class AuthenticationService {
   constructor(
     private router: Router,
     private http: HttpClient,
-    private userService: UserService
+    private userService: UserService,
+    private alertService : AlertService,
   ) {}
 
   login(logInuser) {
 
     return this.userService.getUsers().subscribe((data) => {
+      let validUser = false;
       data.map((data) => {
         console.log(data);
         if (
           data.email == logInuser.email &&
           data.password == logInuser.password
         ) {
+          validUser = true;
           localStorage.setItem(
             "currentUser",
             JSON.stringify({
@@ -40,6 +44,12 @@ export class AuthenticationService {
           }
         }
       });
+      if(validUser){
+        this.alertService.success("welcome to user portal" , false);
+      }
+      else{
+        this.alertService.error("Invalid user" , true)
+      }
     });
   }
 

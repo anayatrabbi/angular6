@@ -95,6 +95,42 @@
         "experience": "2"
       },
       "id": 9
+    },
+    {
+      "firstName": "rela",
+      "lastName": "ahmed",
+      "email": "r@dell.com",
+      "password": "123456",
+      "role": "admin",
+      "skills": {
+        "skillName": "ui",
+        "experience": "3"
+      },
+      "id": 10
+    },
+    {
+      "firstName": "rizvi",
+      "lastName": "vai",
+      "email": "re@dell.com",
+      "password": "123456",
+      "role": "admin",
+      "skills": {
+        "skillName": "ceo",
+        "experience": "10"
+      },
+      "id": 11
+    },
+    {
+      "firstName": "shohana",
+      "lastName": "dalia",
+      "email": "sd@dell.com",
+      "password": "123456",
+      "role": "user",
+      "skills": {
+        "skillName": "commercial",
+        "experience": "1"
+      },
+      "id": 12
     }
   ]
 }
