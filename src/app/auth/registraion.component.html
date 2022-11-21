@@ -1,14 +1,24 @@
-<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+<form
+  [formGroup]="registrationForm"
+  (ngSubmit)="onSubmit()"
+  class="form-horizontal"
+>
   <div class="panel panel-primary">
     <div class="panel-heading">
-      <h3 class="panel-title">Registration</h3>
+      <h3 class="panel-title">{{ pageTitle }}</h3>
     </div>
     <div class="panel-body">
       <!-- first name -->
-      <div class="form-group" [ngClass]="{'has-error': formErrors.firstName}">
+      <div class="form-group" [ngClass]="{ 'has-error': formErrors.firstName }">
         <label class="col-sm-2 control-label" for="firstName">First Name</label>
         <div class="col-sm-8">
-          <input id="firstName" (blur)="logKeyValuePayers()" formControlName="firstName" type="text" class="form-control">
+          <input
+            id="firstName"
+            (blur)="logKeyValuePayers()"
+            formControlName="firstName"
+            type="text"
+            class="form-control"
+          />
           <!-- error msg -->
           <!-- <span class="help-block" *ngIf=" registrationForm.get('firstName').errors && (registrationForm.get('firstName').touched || registrationForm.get('firstName').dirty)">
             <span *ngIf="registrationForm.get('firstName').errors.required">
@@ -19,69 +29,109 @@
             </span>
           </span> -->
           <span class="help-block" *ngIf="formErrors.firstName">
-            {{formErrors.firstName}}
+            {{ formErrors.firstName }}
           </span>
         </div>
       </div>
       <!-- last name -->
-      <div class="form-group" [ngClass]="{'has-error': formErrors.lastName}">
+      <div class="form-group" [ngClass]="{ 'has-error': formErrors.lastName }">
         <label class="col-sm-2 control-label" for="lastNAme">Last Name</label>
         <div class="col-sm-8">
-          <input id="lastName" (blur)="logKeyValuePayers()" formControlName="lastName" type="text" class="form-control">
+          <input
+            id="lastName"
+            (blur)="logKeyValuePayers()"
+            formControlName="lastName"
+            type="text"
+            class="form-control"
+          />
           <!-- err msg -->
           <span class="help-block" *ngIf="formErrors.lastName">
-            {{formErrors.lastName}}
+            {{ formErrors.lastName }}
           </span>
         </div>
       </div>
 
-      <div class="form-group" [ngClass]="{'has-error': formErrors.email}">
+      <div class="form-group" [ngClass]="{ 'has-error': formErrors.email }">
         <label class="col-sm-2 control-label" for="email">Email</label>
         <div class="col-sm-8">
-          <input (blur)="logKeyValuePayers()" id="email" type="text" formControlName="email" class="form-control">
-          <span class="help-block" *ngIf="formErrors.email">
-            {{formErrors.email}}
+          <input
+            (blur)="logKeyValuePayers()"
+            id="email"
+            type="text"
+            formControlName="email"
+            class="form-control"
+          />
+          <span class="help-block" highLight *ngIf="formErrors.email">
+            {{ formErrors.email }}
           </span>
         </div>
       </div>
 
       <div class="form-group">
-        <label class="col-sm-2 control-label"  for="password">Password</label>
+        <label class="col-sm-2 control-label" for="password">Password</label>
         <div class="col-sm-8">
-          <input id="password" type="password" formControlName="password" class="form-control">
+          <input
+            id="password"
+            type="password"
+            formControlName="password"
+            class="form-control"
+          />
         </div>
       </div>
 
-      <div class="form-group" [ngClass]="{'has-error': formErrors.role}">
+      <div class="form-group" [ngClass]="{ 'has-error': formErrors.role }">
         <label class="col-md-2 control-label" for="role">Role</label>
         <label class="radio-inline">
-          <input id="role" value="admin" type="radio" formControlName="role" >Admin
+          <input
+            id="role"
+            value="admin"
+            type="radio"
+            formControlName="role"
+          />Admin
         </label>
         <label class="radio-inline">
-          <input id="role" value="user" type="radio" formControlName="role" >User
+          <input
+            id="role"
+            value="user"
+            type="radio"
+            formControlName="role"
+          />User
         </label>
       </div>
 
       <div formGroupName="skills">
-
         <div class="form-group">
-          <label class="col-sm-2 control-label"  for="skillName">Skill Name</label>
+          <label class="col-sm-2 control-label" for="skillName"
+            >Skill Name</label
+          >
           <div class="col-sm-8">
-            <input id="skillName" type="text" formControlName="skillName" class="form-control">
+            <input
+              id="skillName"
+              type="text"
+              formControlName="skillName"
+              class="form-control"
+            />
           </div>
         </div>
 
         <div class="form-group">
-          <label class="col-sm-2 control-label"  for="experience">Experience</label>
+          <label class="col-sm-2 control-label" for="experience"
+            >Experience</label
+          >
           <div class="col-sm-8">
-            <input id="experience" type="text" placeholder="Experience in Year" formControlName="experience" class="form-control">
+            <input
+              id="experience"
+              type="text"
+              placeholder="Experience in Year"
+              formControlName="experience"
+              class="form-control"
+            />
           </div>
         </div>
-        
       </div>
     </div>
     <div class="panel-footer">
-      <button type="submit" class="btn btn-primary">Registration</button>
+      <button type="submit" class="btn btn-primary">{{ buttonTitle }}</button>
     </div>
   </div>
 </form>

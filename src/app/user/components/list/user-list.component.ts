@@ -23,10 +23,26 @@ export class UserListComponent implements OnInit {
     //   .getUsers()
     //   .subscribe((userList) => (this.users = userList));
     this.users = this._route.snapshot.data["userList"];
+    this.onSelected('admin');
     console.log(this.users);
   }
 
-  editUser(user: IUser) {}
+  editUser(user: IUser) {
+    this._router.navigate(["edit" , user.id])
+  }
+
+  onSelected(selectedvalue: string) {
+    const others = [];
+    const filteredUsers = this.users.filter((item) => {
+      if (item.role.toLowerCase() === selectedvalue.toLowerCase()) {
+        return item;
+      } else {
+        others.push(item);
+        return;
+      }
+    });
+    this.users = [...filteredUsers, ...others];
+  }
 
   deleteUser(user: IUser) {
     this._useService.deleteUser(user.id).subscribe(() => {

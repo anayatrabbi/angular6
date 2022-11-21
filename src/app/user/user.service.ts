@@ -9,7 +9,7 @@ import {
 import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
 import { of } from "rxjs";
-import { retryWhen, map, mergeMap, delay } from "rxjs/operators";
+import { retryWhen, map, mergeMap, delay, catchError } from "rxjs/operators";
 import { IUser } from "./IUser";
 
 @Injectable()
@@ -58,9 +58,16 @@ export class UserService {
     return this._httpClient.delete<void>(`${this.baseUrl}/${id}`);
   }
 
-  // updateUser(user: IUser): Observable<void>{
-  //   return this._httpClient.put(`${this.baseUrl}/${user}` , Head)
-  // }
+  updateUser(user: IUser): Observable<void> {
+    return this._httpClient
+      .put<void>(`${this.baseUrl}/${user.id}`, user, {
+        headers: new HttpHeaders({
+          "Content-Type": "application/json",
+        }),
+      })
+      .pipe(catchError(this.handleError));
+  }
+
   addUser(user: IUser): Observable<IUser> {
     console.log("registration method is callled", user);
     // this.listOfUser.push(user);

@@ -1,6 +1,8 @@
 <div class="container">
   <div>
-    <h3>Name: {{ user.firstName }} {{ user.lastName }}</h3>
+    <h3>
+      Name: {{ user.firstName | Uppercase }} {{ user.lastName | Uppercase }}
+    </h3>
     <div class="mainSection">
       <div class="section">
         <div>First Name:</div>

@@ -18,6 +18,10 @@ const routes: Routes = [
         path: "user",
         loadChildren: "./user/user.module#UserModule",
       },
+      {
+        path: "edit/:id",
+        component: RegistraionComponent,
+      },
       { path: "**", component: LoginComponent },
     ],
   },

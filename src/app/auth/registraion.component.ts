@@ -7,7 +7,7 @@ import {
   Validators,
   AbstractControl,
 } from "@angular/forms";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { AlertService } from "../services/alert.service";
 import { IUser } from "../user/IUser";
 import { UserService } from "../user/user.service";
@@ -19,13 +19,16 @@ import { UserService } from "../user/user.service";
 })
 export class RegistraionComponent implements OnInit {
   registrationForm: FormGroup;
-  //we need to inject service class at constructor
   user: IUser;
+  pageTitle: string = "Registration";
+  buttonTitle: string = "Registration";
+  //we need to inject service class at constructor
   constructor(
     private fb: FormBuilder,
     private _userService: UserService,
     private _route: Router,
-    private _alert: AlertService
+    private _alert: AlertService,
+    private activateRoute: ActivatedRoute
   ) {}
 
   //Invoked when given component has been initialized.
@@ -57,10 +60,55 @@ export class RegistraionComponent implements OnInit {
     this.registrationForm.valueChanges.subscribe((data: any) => {
       this.logKeyValuePayers(this.registrationForm);
     });
+    this.activateRoute.paramMap.subscribe((params) => {
+      const id = +params.get("id");
+      if (id) {
+        this.getUser(id);
+        this.pageTitle = "Edit user";
+        this.buttonTitle = "Edit";
+      } else {
+        this.user = {
+          id: null,
+          firstName: "",
+          lastName: "",
+          password: "",
+          email: "",
+          skills: [],
+          role: "",
+        };
+      }
+    });
+  }
+
+  getUser(id: number) {
+    this._userService.getUser(id).subscribe((user: IUser) => {
+      this.editUser(user);
+      console.log(user);
+      this.user = user;
+      console.log(this.user);
+    });
+  }
+
+  editUser(user: IUser) {
+    this.registrationForm.patchValue({
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      password: user.password,
+      skills: {
+        skillName: user.skills["skillName"],
+        experience: user.skills["experience"],
+      },
+    });
   }
 
   mapFormDataToUserModel() {
-    this.user = this.registrationForm.value;
+    this.user.firstName = this.registrationForm.value.firstName;
+    this.user.lastName = this.registrationForm.value.lastName;
+    this.user.email = this.registrationForm.value.email;
+    this.user.password = this.registrationForm.value.password;
+    this.user.role = this.registrationForm.value.role;
+    this.user.skills = this.registrationForm.value.skills;
   }
 
   //we can keep some validation msg , and checking it for loop we will populate anothe object and will show it at browser
@@ -118,35 +166,21 @@ export class RegistraionComponent implements OnInit {
 
   onSubmit(): void {
     this.mapFormDataToUserModel();
-    // console.log(this.formErrors);
-    // console.log(this.registrationForm.value);
-    // console.log(this.user);
-    console.log(this.registrationForm.dirty);
     if (this.registrationForm.dirty) {
       this.logKeyValuePayers(this.registrationForm);
-      this._userService.addUser(this.user).subscribe((data: IUser) => {
-        console.log("after susbscribing", data);
-        // this.registrationForm.reset();
-        localStorage.setItem(
-          "currentUser",
-          JSON.stringify({
-            email: data.email,
-            password: data.password,
-            role: data.role,
-            id: data.id,
-          })
-        );
-        this._alert.success('registration successfull' , true);
-        // if (data.role == "admin") {
-        //   this._route.navigate(["user"]);
-        // } else {
-        //   this._route.navigate([`user/${data.id}`]);
-        // }
-        this._route.navigate(["login"])
-      });
-    }
-    else{
-      this._alert.error("plese fill all the field" , true)
+      if (this.user.id) {
+        this._userService.updateUser(this.user).subscribe((data) => {
+          this._alert.success("user updated", true);
+          this._route.navigate(["user"]);
+        });
+      } else {
+        this._userService.addUser(this.user).subscribe((data: IUser) => {
+          this._alert.success("registration successfull", true);
+          this._route.navigate(["login"]);
+        });
+      }
+    } else {
+      this._alert.error("plese fill all the field", true);
     }
   }
 }

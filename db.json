@@ -5,7 +5,7 @@
       "lastName": "khan",
       "email": "anayatrabbi86@dell.com",
       "password": "123456",
-      "role": "admin",
+      "role": "user",
       "skills": {
         "skillName": "javascript",
         "experience": "2"
@@ -47,30 +47,6 @@
         "experience": "2"
       },
       "id": 5
-    },
-    {
-      "firstName": "osama ",
-      "lastName": "alom",
-      "email": "o@dell.com",
-      "password": "123456",
-      "role": "admin",
-      "skills": {
-        "skillName": "angula",
-        "experience": "2"
-      },
-      "id": 6
-    },
-    {
-      "firstName": "osama ",
-      "lastName": "alom",
-      "email": "o@dell.com",
-      "password": "123456",
-      "role": "admin",
-      "skills": {
-        "skillName": "angula",
-        "experience": "2"
-      },
-      "id": 7
     },
     {
       "firstName": "sabiha",
@@ -131,6 +107,66 @@
         "experience": "1"
       },
       "id": 12
+    },
+    {
+      "firstName": "anayat",
+      "lastName": "molla",
+      "email": "a@dell.com",
+      "password": "123456",
+      "role": "admin",
+      "skills": {
+        "skillName": "java",
+        "experience": "2"
+      },
+      "id": 13
+    },
+    {
+      "firstName": "anayat",
+      "lastName": "rabbi",
+      "email": "a@dell.com",
+      "password": "123456",
+      "role": "admin",
+      "skills": {
+        "skillName": "javascript",
+        "experience": "3"
+      },
+      "id": 14
+    },
+    {
+      "firstName": "anayatk",
+      "lastName": "khan",
+      "email": "a@dell.com",
+      "password": "123456",
+      "role": "user",
+      "skills": {
+        "skillName": "java",
+        "experience": "2"
+      },
+      "id": 15
+    },
+    {
+      "firstName": "anayatk",
+      "lastName": "khann",
+      "email": "a@dell.com",
+      "password": "123456",
+      "role": "user",
+      "skills": {
+        "skillName": "javascript",
+        "experience": "1"
+      },
+      "id": 16
+    },
+    {
+      "id": 17,
+      "firstName": "anup",
+      "lastName": "kar",
+      "password": "123456",
+      "email": "an@dell.com",
+      "skills": {
+        "skillName": "wordpress",
+        "experience": "2"
+      },
+      "role": "user"
     }
   ]
 }

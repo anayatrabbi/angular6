@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 //step1 import routermodule and routes
 import { RouterModule, Routes } from "@angular/router";
+import { RegistraionComponent } from "../auth/registraion.component";
 import { AuthGuard } from "../gaurd";
 import UserGaurd from "../gaurd/user.gaurd";
 import { UserLayoutComponent } from "./components/Layout/user-layout.component";
@@ -17,9 +18,13 @@ const routes: Routes = [
         path: "",
         component: UserListComponent,
         resolve: { userList: UserListResolverService },
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
       },
-      { path: ":id", component: UserProfileComponent , canActivate:[UserGaurd] },
+      {
+        path: ":id",
+        component: UserProfileComponent,
+        canActivate: [UserGaurd],
+      },
     ],
   },
 
