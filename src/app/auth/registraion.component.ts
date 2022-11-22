@@ -7,7 +7,9 @@ import {
   Validators,
   AbstractControl,
 } from "@angular/forms";
+import { DISABLED } from "@angular/forms/src/model";
 import { ActivatedRoute, Router } from "@angular/router";
+import { Observable, of, Subject } from "rxjs";
 import { AlertService } from "../services/alert.service";
 import { IUser } from "../user/IUser";
 import { UserService } from "../user/user.service";
@@ -22,7 +24,7 @@ export class RegistraionComponent implements OnInit {
   user: IUser;
   pageTitle: string = "Registration";
   buttonTitle: string = "Registration";
-
+  disableEmailAtEdit = false;
   constructor(
     private fb: FormBuilder,
     private _userService: UserService,
@@ -31,7 +33,6 @@ export class RegistraionComponent implements OnInit {
     private activateRoute: ActivatedRoute
   ) {}
 
- 
   ngOnInit() {
     this.registrationForm = this.fb.group({
       firstName: [
@@ -44,7 +45,7 @@ export class RegistraionComponent implements OnInit {
       ],
       lastName: ["", [Validators.required]],
       email: ["", [Validators.required, emailDomain("dell.com")]],
-      password: [""],
+      password: ["", [Validators.required]],
       role: ["admin", [Validators.required]],
       skills: this.fb.group({
         skillName: [""],
@@ -61,7 +62,9 @@ export class RegistraionComponent implements OnInit {
         this.getUser(id);
         this.pageTitle = "Edit user";
         this.buttonTitle = "Edit";
+        this.registrationForm.get("email").disable();
       } else {
+        this.disableEmailAtEdit = false;
         this.user = {
           id: null,
           firstName: "",
@@ -78,9 +81,7 @@ export class RegistraionComponent implements OnInit {
   getUser(id: number) {
     this._userService.getUser(id).subscribe((user: IUser) => {
       this.editUser(user);
-      console.log(user);
       this.user = user;
-      console.log(this.user);
     });
   }
 
@@ -156,22 +157,46 @@ export class RegistraionComponent implements OnInit {
 
   onSubmit(): void {
     this.mapFormDataToUserModel();
-    if (this.registrationForm.dirty) {
-      this.logKeyValuePayers(this.registrationForm);
-      if (this.user.id) {
-        this._userService.updateUser(this.user).subscribe((data) => {
-          this._alert.success("user updated", true);
-          this._route.navigate(["user"]);
-        });
-      } else {
-        this._userService.addUser(this.user).subscribe((data: IUser) => {
-          this._alert.success("registration successfull", true);
-          this._route.navigate(["login"]);
-        });
-      }
+    this.logKeyValuePayers(this.registrationForm);
+    if (this.registrationForm.dirty || this.registrationForm.invalid) {
+      this.uniqueEmailCheck(this.user.email).subscribe((uniqueEmail) => {
+        if (uniqueEmail || this.user.id) {
+          if (this.user.id) {
+            this._userService.updateUser(this.user).subscribe((data) => {
+              this._alert.success("user updated", true);
+              this._route.navigate(["user"]);
+            });
+          } else {
+            this._userService.addUser(this.user).subscribe((data: IUser) => {
+              this._alert.success("registration successfull", true);
+              this._route.navigate(["login"]);
+            });
+          }
+        } else {
+          this._alert.error("plese Enter a unique Email", true);
+        }
+      });
     } else {
       this._alert.error("plese fill all the field", true);
     }
+  }
+
+  uniqueEmailCheck(emailName: string): Observable<boolean> {
+    let uniqueEmail = new Subject<boolean>();
+
+    this._userService.getUsers().subscribe((data: IUser[]) => {
+      const sameEmilaUser = data.filter((data: IUser) => {
+        return data.email == emailName;
+      });
+      if (sameEmilaUser.length == 0) {
+        uniqueEmail.next(true);
+        uniqueEmail.complete();
+      } else {
+        uniqueEmail.next(false);
+        uniqueEmail.complete();
+      }
+    });
+    return uniqueEmail.asObservable();
   }
 }
 

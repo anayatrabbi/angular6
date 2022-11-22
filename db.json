@@ -73,11 +73,11 @@
       "id": 9
     },
     {
-      "firstName": "rela",
+      "firstName": "real",
       "lastName": "ahmed",
       "email": "r@dell.com",
       "password": "123456",
-      "role": "admin",
+      "role": "user",
       "skills": {
         "skillName": "ui",
         "experience": "3"
@@ -86,8 +86,7 @@
     },
     {
       "firstName": "rizvi",
-      "lastName": "vai",
-      "email": "re@dell.com",
+      "lastName": "rahman",
       "password": "123456",
       "role": "admin",
       "skills": {
@@ -167,6 +166,78 @@
         "experience": "2"
       },
       "role": "user"
+    },
+    {
+      "id": 18,
+      "firstName": "osama",
+      "lastName": "almas",
+      "password": "123456",
+      "email": "o@dell.com",
+      "skills": {
+        "skillName": "angular",
+        "experience": "4"
+      },
+      "role": "admin"
+    },
+    {
+      "id": 19,
+      "firstName": "anayat",
+      "lastName": "astha",
+      "password": "",
+      "email": "a@dell.com",
+      "skills": {
+        "skillName": "",
+        "experience": ""
+      },
+      "role": "admin"
+    },
+    {
+      "id": 20,
+      "firstName": "anayat",
+      "lastName": "khan",
+      "password": "",
+      "email": "a@dell.com",
+      "skills": {
+        "skillName": "",
+        "experience": ""
+      },
+      "role": "admin"
+    },
+    {
+      "id": 21,
+      "firstName": "anayat",
+      "lastName": "khan",
+      "password": "123456",
+      "email": "add@dell.com",
+      "skills": {
+        "skillName": "",
+        "experience": ""
+      },
+      "role": "admin"
+    },
+    {
+      "id": 22,
+      "firstName": "rafik",
+      "lastName": "khan",
+      "password": "123456",
+      "email": "rk@dell.com",
+      "skills": {
+        "skillName": "business man",
+        "experience": "5"
+      },
+      "role": "user"
+    },
+    {
+      "id": 23,
+      "firstName": "real",
+      "lastName": "asiujjaman",
+      "password": "123456",
+      "email": "ra@dell.com",
+      "skills": {
+        "skillName": "ui",
+        "experience": "4"
+      },
+      "role": "admin"
     }
   ]
 }
