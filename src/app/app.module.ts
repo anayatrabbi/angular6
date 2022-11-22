@@ -23,6 +23,7 @@ import { AlertService } from "./services/alert.service";
 import { AlertComponent } from "./directives";
 import { ErrorInterceptor } from "./helper/error.interceptor";
 import { HighLightError } from "./directives/error-highlight.directives";
+import { InputPasswordComponent } from "./auth/passwordField.component";
 
 @Pipe({
   name: "Uppercase",
@@ -38,6 +39,7 @@ export class UpperCase implements PipeTransform {
   declarations: [
     AppComponent,
     LoginComponent,
+    InputPasswordComponent,
     RegistraionComponent,
     LoginLayoutComponent,
     AlertComponent,
