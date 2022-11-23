@@ -8,18 +8,27 @@
       <div class="form-group">
         <label class="col-sm-2 control-label" for="email">Email</label>
         <div class="col-sm-8">
-          <input id="email" formControlName="email" type="text" class="form-control">
+          <input
+            id="email"
+            formControlName="email"
+            type="text"
+            class="form-control"
+          />
         </div>
       </div>
       <!-- password -->
       <div class="form-group">
-        <label class="col-sm-2 control-label"  for="password">Password</label>
+        <label class="col-sm-2 control-label" for="password">Password</label>
         <div class="col-sm-8">
-          <!-- <input id="password" type="password" formControlName="password" class="form-control"> -->
-          <input-password formControlName="password"></input-password>
+          <input
+            id="password"
+            type="password"
+            formControlName="password"
+            class="form-control"
+          />
+          <!-- <input-password formControlName="password"></input-password> -->
         </div>
       </div>
-
     </div>
     <div class="panel-footer">
       <button type="submit" class="btn btn-primary">Login</button>
@@ -32,16 +41,18 @@
       <th>form controll</th>
     </tr>
     <tr>
-      <td style="padding: 10px;">
-      touched: {{loginForm.touched}} <br/>
-      dirty: {{loginForm.dirty}} <br/>
-      valid: {{loginForm.valid}} <br/>
-      json: {{loginForm.value |json}} <br/></td>
-      <td style="padding: 10px;">
-        touched: {{loginForm.get('email').touched}} <br/>
-        dirty: {{loginForm.get('email').dirty}} <br/>
-        valid: {{loginForm.get('email').valid}} <br/>
-        json: {{loginForm.get('email').value}} <br/></td>
+      <td style="padding: 10px">
+        touched: {{ loginForm.touched }} <br />
+        dirty: {{ loginForm.dirty }} <br />
+        valid: {{ loginForm.valid }} <br />
+        json: {{ loginForm.value | json }} <br />
+      </td>
+      <td style="padding: 10px">
+        touched: {{ loginForm.get("email").touched }} <br />
+        dirty: {{ loginForm.get("email").dirty }} <br />
+        valid: {{ loginForm.get("email").valid }} <br />
+        json: {{ loginForm.get("email").value }} <br />
+      </td>
     </tr>
   </table>
 </form>

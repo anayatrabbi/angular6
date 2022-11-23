@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import {
   AbstractControl,
   ControlValueAccessor,
@@ -9,8 +9,13 @@ import {
 } from "@angular/forms";
 
 @Component({
-  selector: "input-password",
-  template: ` <input id="password" type="password" class="form-control" /> `,
+  selector: "input-increment",
+  template: `
+    <!-- <input id="password" type="password" class="form-control" />
+    <div>{{ password }}</div> -->
+    <button class="btn btn-primary" (click)="onSubstruction()">-</button>
+    {{ quantity }}<button class="btn btn-primary" (click)="onAdd()">+</button>
+  `,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -24,28 +29,48 @@ import {
     },
   ],
 })
-export class InputPasswordComponent implements ControlValueAccessor, Validator {
+export class InputPasswordComponent
+  implements OnInit, ControlValueAccessor, Validator
+{
+  quantity: number;
 
-    onChange = (value: any) => {};
-    onTouch = () => {};
+  onChange = (value: number) => {};
+  onTouch = () => {};
 
-  validate(control: AbstractControl): ValidationErrors {
-    throw new Error("Method not implemented.");
+  ngOnInit() {
+    this.quantity = 0;
   }
-  registerOnValidatorChange?(fn: () => void): void {
-    throw new Error("Method not implemented.");
+
+  onAdd() {
+    this.quantity += 1;
+    console.log(this.quantity);
+    this.onChange(this.quantity);
   }
-  writeValue(obj: any): void {
-    throw new Error("Method not implemented.");
+  onSubstruction() {
+    this.quantity -= 1;
+    this.onChange(this.quantity);
+  }
+  validate(control: AbstractControl): ValidationErrors | null {
+    const quantity = control.value;
+    if (quantity <= 0) {
+      console.log(control.value);
+      return {
+        mustBepositive: quantity,
+      };
+    }
+    return control.value;
+  }
+
+  writeValue(value: number): void {
+    this.quantity = value;
   }
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
   registerOnTouched(fn: any): void {
-    throw new Error("Method not implemented.");
+    this.onTouch = fn;
   }
   setDisabledState?(isDisabled: boolean): void {
     throw new Error("Method not implemented.");
   }
-  password = "";
 }

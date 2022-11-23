@@ -238,6 +238,42 @@
         "experience": "4"
       },
       "role": "admin"
+    },
+    {
+      "id": 24,
+      "firstName": "rizvi",
+      "lastName": "asiujjaman",
+      "password": "123456",
+      "email": "rka@dell.com",
+      "skills": {
+        "skillName": "ceo",
+        "experience": 5
+      },
+      "role": "admin"
+    },
+    {
+      "id": 25,
+      "firstName": "anup vai",
+      "lastName": "kar",
+      "password": "123456",
+      "email": "avk@dell.com",
+      "skills": {
+        "skillName": "javascript",
+        "experience": "1"
+      },
+      "role": "user"
+    },
+    {
+      "id": 26,
+      "firstName": "",
+      "lastName": "",
+      "password": "",
+      "email": "",
+      "skills": {
+        "skillName": "",
+        "experience": "1"
+      },
+      "role": "admin"
     }
   ]
 }

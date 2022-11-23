@@ -49,7 +49,7 @@ export class RegistraionComponent implements OnInit {
       role: ["admin", [Validators.required]],
       skills: this.fb.group({
         skillName: [""],
-        experience: [""],
+        experience: [0, [Validators.required]],
       }),
     });
 
@@ -158,6 +158,7 @@ export class RegistraionComponent implements OnInit {
   onSubmit(): void {
     this.mapFormDataToUserModel();
     this.logKeyValuePayers(this.registrationForm);
+    console.log(this.registrationForm.value);
     if (this.registrationForm.dirty || this.registrationForm.invalid) {
       this.uniqueEmailCheck(this.user.email).subscribe((uniqueEmail) => {
         if (uniqueEmail || this.user.id) {
