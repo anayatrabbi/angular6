@@ -11,10 +11,27 @@ import {
 @Component({
   selector: "input-increment",
   template: `
-    <!-- <input id="password" type="password" class="form-control" />
-    <div>{{ password }}</div> -->
-    <button class="btn btn-primary" (click)="onSubstruction()">-</button>
-    {{ quantity }}<button class="btn btn-primary" (click)="onAdd()">+</button>
+    <button
+      style="margin-right:10px;"
+      class="btn btn-primary"
+      type="button"
+      (click)="onSubstruction()"
+    >
+      -
+    </button>
+    {{ quantity
+    }}<button
+      style="margin-left:10px;"
+      class="btn btn-primary"
+      type="button"
+      (click)="onAdd()"
+    >
+      +
+    </button>
+
+    <div style="color:red;" *ngIf="formErrors.experience">
+      {{ formErrors.experience }}
+    </div>
   `,
   providers: [
     {
@@ -32,18 +49,18 @@ import {
 export class InputPasswordComponent
   implements OnInit, ControlValueAccessor, Validator
 {
-  quantity: number;
+  @Input() formErrors: any;
+  @Input() quantity: number;
 
   onChange = (value: number) => {};
   onTouch = () => {};
 
   ngOnInit() {
-    this.quantity = 0;
+    console.log(this.quantity);
   }
 
   onAdd() {
     this.quantity += 1;
-    console.log(this.quantity);
     this.onChange(this.quantity);
   }
   onSubstruction() {
@@ -51,13 +68,6 @@ export class InputPasswordComponent
     this.onChange(this.quantity);
   }
   validate(control: AbstractControl): ValidationErrors | null {
-    const quantity = control.value;
-    if (quantity <= 0) {
-      console.log(control.value);
-      return {
-        mustBepositive: quantity,
-      };
-    }
     return control.value;
   }
 

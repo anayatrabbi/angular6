@@ -1,4 +1,4 @@
 export interface ISkill {
   skillName: string;
-  experience: string;
+  experience: number;
 }

@@ -14,18 +14,18 @@ const routes: Routes = [
     children: [
       { path: "login", component: LoginComponent },
       { path: "registration", component: RegistraionComponent },
-      {
-        path: "user",
-        loadChildren: "./user/user.module#UserModule",
-      },
-      {
-        path: "edit/:id",
-        component: RegistraionComponent,
-      },
-      { path: "**", component: LoginComponent },
+      { path: "", redirectTo: "login", pathMatch: "full" },
     ],
   },
-  // { path: "", redirectTo: "login", pathMatch: "full" },
+  {
+    path: "user",
+    loadChildren: "./user/user.module#UserModule",
+  },
+  {
+    path: "edit/:id",
+    component: RegistraionComponent,
+  },
+  { path: "**", component: LoginComponent },
 ];
 
 @NgModule({

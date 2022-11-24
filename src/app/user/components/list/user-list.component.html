@@ -25,7 +25,11 @@
         <td>{{ user.role | Uppercase }}</td>
         <td>
           <button class="btn btn-primary" (click)="editUser(user)">Edit</button>
-          <button class="btn btn-danger" (click)="deleteUser(user)">
+          <button
+            style="margin-left: 5px"
+            class="btn btn-danger"
+            (click)="deleteUser(user)"
+          >
             Delete
           </button>
         </td>

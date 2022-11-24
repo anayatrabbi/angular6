@@ -1,288 +1,86 @@
 {
   "user": [
     {
-      "firstName": "Md anayat",
-      "lastName": "khan",
-      "email": "anayatrabbi86@dell.com",
-      "password": "123456",
-      "role": "user",
-      "skills": {
-        "skillName": "javascript",
-        "experience": "2"
-      },
-      "id": 2
-    },
-    {
+      "id": 1,
       "firstName": "anayat",
-      "lastName": "khan",
-      "email": "a@dell.com",
-      "password": "123456",
-      "role": "admin",
-      "skills": {
-        "skillName": "jsp",
-        "experience": "1"
-      },
-      "id": 3
-    },
-    {
-      "firstName": "anayat",
-      "lastName": "khan",
-      "password": "123456",
-      "role": "admin",
-      "skills": {
-        "skillName": "java",
-        "experience": 10
-      },
-      "id": 4
-    },
-    {
-      "firstName": "rasel ",
-      "lastName": "ahmed",
-      "email": "b@dell.com",
-      "password": "123456",
-      "role": "admin",
-      "skills": {
-        "skillName": "asp.net",
-        "experience": "2"
-      },
-      "id": 5
-    },
-    {
-      "firstName": "sabiha",
-      "lastName": "Niznin",
-      "email": "s@dell.com",
-      "password": "123456",
-      "role": "user",
-      "skills": {
-        "skillName": "test",
-        "experience": "2"
-      },
-      "id": 8
-    },
-    {
-      "firstName": "zarin",
-      "lastName": "tasnim",
-      "email": "z@dell.com",
-      "password": "123456",
-      "role": "admin",
-      "skills": {
-        "skillName": "css",
-        "experience": "2"
-      },
-      "id": 9
-    },
-    {
-      "firstName": "real",
-      "lastName": "ahmed",
-      "email": "r@dell.com",
-      "password": "123456",
-      "role": "user",
-      "skills": {
-        "skillName": "ui",
-        "experience": "3"
-      },
-      "id": 10
-    },
-    {
-      "firstName": "rizvi",
-      "lastName": "rahman",
-      "password": "123456",
-      "role": "admin",
-      "skills": {
-        "skillName": "ceo",
-        "experience": "10"
-      },
-      "id": 11
-    },
-    {
-      "firstName": "shohana",
-      "lastName": "dalia",
-      "email": "sd@dell.com",
-      "password": "123456",
-      "role": "user",
-      "skills": {
-        "skillName": "commercial",
-        "experience": "1"
-      },
-      "id": 12
-    },
-    {
-      "firstName": "anayat",
-      "lastName": "molla",
-      "email": "a@dell.com",
-      "password": "123456",
-      "role": "admin",
-      "skills": {
-        "skillName": "java",
-        "experience": "2"
-      },
-      "id": 13
-    },
-    {
-      "firstName": "anayat",
-      "lastName": "rabbi",
-      "email": "a@dell.com",
-      "password": "123456",
-      "role": "admin",
-      "skills": {
-        "skillName": "javascript",
-        "experience": "3"
-      },
-      "id": 14
-    },
-    {
-      "firstName": "anayatk",
-      "lastName": "khan",
-      "email": "a@dell.com",
-      "password": "123456",
-      "role": "user",
-      "skills": {
-        "skillName": "java",
-        "experience": "2"
-      },
-      "id": 15
-    },
-    {
-      "firstName": "anayatk",
-      "lastName": "khann",
-      "email": "a@dell.com",
-      "password": "123456",
-      "role": "user",
-      "skills": {
-        "skillName": "javascript",
-        "experience": "1"
-      },
-      "id": 16
-    },
-    {
-      "id": 17,
-      "firstName": "anup",
-      "lastName": "kar",
-      "password": "123456",
-      "email": "an@dell.com",
-      "skills": {
-        "skillName": "wordpress",
-        "experience": "2"
-      },
-      "role": "user"
-    },
-    {
-      "id": 18,
-      "firstName": "osama",
-      "lastName": "almas",
-      "password": "123456",
-      "email": "o@dell.com",
-      "skills": {
-        "skillName": "angular",
-        "experience": "4"
-      },
-      "role": "admin"
-    },
-    {
-      "id": 19,
-      "firstName": "anayat",
-      "lastName": "astha",
-      "password": "",
-      "email": "a@dell.com",
-      "skills": {
-        "skillName": "",
-        "experience": ""
-      },
-      "role": "admin"
-    },
-    {
-      "id": 20,
-      "firstName": "anayat",
-      "lastName": "khan",
-      "password": "",
-      "email": "a@dell.com",
-      "skills": {
-        "skillName": "",
-        "experience": ""
-      },
-      "role": "admin"
-    },
-    {
-      "id": 21,
-      "firstName": "anayat",
-      "lastName": "khan",
-      "password": "123456",
-      "email": "add@dell.com",
-      "skills": {
-        "skillName": "",
-        "experience": ""
-      },
-      "role": "admin"
-    },
-    {
-      "id": 22,
-      "firstName": "rafik",
-      "lastName": "khan",
-      "password": "123456",
-      "email": "rk@dell.com",
-      "skills": {
-        "skillName": "business man",
-        "experience": "5"
-      },
-      "role": "user"
-    },
-    {
-      "id": 23,
-      "firstName": "real",
-      "lastName": "asiujjaman",
-      "password": "123456",
-      "email": "ra@dell.com",
-      "skills": {
-        "skillName": "ui",
-        "experience": "4"
-      },
-      "role": "admin"
-    },
-    {
-      "id": 24,
-      "firstName": "rizvi",
-      "lastName": "asiujjaman",
-      "password": "123456",
-      "email": "rka@dell.com",
-      "skills": {
-        "skillName": "ceo",
-        "experience": 5
-      },
-      "role": "admin"
-    },
-    {
-      "id": 25,
-      "firstName": "anup vai",
-      "lastName": "kar",
-      "password": "123456",
-      "email": "avk@dell.com",
-      "skills": {
-        "skillName": "javascript",
-        "experience": "1"
-      },
-      "role": "user"
-    },
-    {
-      "id": 26,
-      "firstName": "",
-      "lastName": "",
-      "password": "",
-      "email": "",
-      "skills": {
-        "skillName": "",
-        "experience": "1"
-      },
-      "role": "admin"
-    },
-    {
-      "id": 27,
-      "firstName": "akkk",
       "lastName": "khan",
       "password": "123456",
       "email": "ak@dell.com",
       "skills": {
+        "skillName": "javascript",
+        "experience": 3
+      },
+      "role": "user"
+    },
+    {
+      "id": 2,
+      "firstName": "anayat",
+      "lastName": "khan",
+      "password": "123456",
+      "email": "akk@dell.com",
+      "skills": {
         "skillName": "java",
         "experience": 3
+      },
+      "role": "admin"
+    },
+    {
+      "id": 3,
+      "firstName": "rahim",
+      "lastName": "ullah",
+      "password": "123456",
+      "email": "yyy@dell.com",
+      "skills": {
+        "skillName": "vue js",
+        "experience": 3
+      },
+      "role": "admin"
+    },
+    {
+      "id": 4,
+      "firstName": "rabbi",
+      "lastName": "ahmed",
+      "password": "123456",
+      "email": "yyyy@dell.com",
+      "skills": {
+        "skillName": "asp.net",
+        "experience": 3
+      },
+      "role": "admin"
+    },
+    {
+      "id": 5,
+      "firstName": "aaaa",
+      "lastName": "aaa",
+      "password": "123456",
+      "email": "yyyyyy@dell.com",
+      "skills": {
+        "skillName": "",
+        "experience": 4
+      },
+      "role": "admin"
+    },
+    {
+      "id": 6,
+      "firstName": "osama",
+      "lastName": "boss",
+      "password": "123456",
+      "email": "ob@dell.com",
+      "skills": {
+        "skillName": "angular",
+        "experience": 4
+      },
+      "role": "user"
+    },
+    {
+      "id": 7,
+      "firstName": "aaaa",
+      "lastName": "aaaa",
+      "password": "123456",
+      "email": "aa@asthait.com",
+      "skills": {
+        "skillName": "fa",
+        "experience": 2
       },
       "role": "admin"
     }

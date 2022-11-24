@@ -1,1 +1,5 @@
-
+.logout {
+  color: white;
+  cursor: pointer !important;
+  background-color: antiquewhite;
+}

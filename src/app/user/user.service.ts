@@ -23,12 +23,11 @@ export class UserService {
       email: "ana@asthait.com",
       password: "12345",
       role: "admin",
-      skills: [
+      skills: 
         {
           skillName: "c#",
-          experience: "3",
+          experience: 3,
         },
-      ],
     },
   ];
 

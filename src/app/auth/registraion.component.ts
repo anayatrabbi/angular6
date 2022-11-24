@@ -1,3 +1,4 @@
+import { ClassGetter } from "@angular/compiler/src/output/output_ast";
 import { Component, OnInit } from "@angular/core";
 import {
   FormControl,
@@ -9,6 +10,7 @@ import {
 } from "@angular/forms";
 import { DISABLED } from "@angular/forms/src/model";
 import { ActivatedRoute, Router } from "@angular/router";
+import { Console } from "console";
 import { Observable, of, Subject } from "rxjs";
 import { AlertService } from "../services/alert.service";
 import { IUser } from "../user/IUser";
@@ -44,12 +46,15 @@ export class RegistraionComponent implements OnInit {
         ],
       ],
       lastName: ["", [Validators.required]],
-      email: ["", [Validators.required, emailDomain("dell.com")]],
+      email: ["", [Validators.required, emailDomain("asthait.com")]],
       password: ["", [Validators.required]],
       role: ["admin", [Validators.required]],
       skills: this.fb.group({
-        skillName: [""],
-        experience: [0, [Validators.required]],
+        skillName: ["", Validators.required],
+        experience: [
+          0,
+          [Validators.required, Validators.max(5), Validators.min(0)],
+        ],
       }),
     });
 
@@ -62,7 +67,6 @@ export class RegistraionComponent implements OnInit {
         this.getUser(id);
         this.pageTitle = "Edit user";
         this.buttonTitle = "Edit";
-        this.registrationForm.get("email").disable();
       } else {
         this.disableEmailAtEdit = false;
         this.user = {
@@ -71,7 +75,10 @@ export class RegistraionComponent implements OnInit {
           lastName: "",
           password: "",
           email: "",
-          skills: [],
+          skills: {
+            skillName: "",
+            experience: 0,
+          },
           role: "",
         };
       }
@@ -91,6 +98,7 @@ export class RegistraionComponent implements OnInit {
       lastName: user.lastName,
       email: user.email,
       password: user.password,
+      role: user.role,
       skills: {
         skillName: user.skills["skillName"],
         experience: user.skills["experience"],
@@ -110,18 +118,29 @@ export class RegistraionComponent implements OnInit {
   validationMessages = {
     firstName: {
       required: "Full Name is required",
-      minlength: "minimun length",
-      maxlength: "maximum length",
+      minlength: "minimun length is 4 letter",
+      maxlength: "maximum length is 10 letter",
     },
     lastName: {
       required: "Last Name is required",
     },
     email: {
       required: "email is required",
-      emailDomain: "you are not varified",
+      emailDomain: "your domain should have asthait.com",
+    },
+    password: {
+      required: "Password is required",
     },
     role: {
       required: "Role is required",
+    },
+    skillName: {
+      required: "SkillName is required",
+    },
+    experience: {
+      required: "experience is required",
+      min: "minimum experience is 0",
+      max: "maximum experience is 5",
     },
   };
 
@@ -130,6 +149,9 @@ export class RegistraionComponent implements OnInit {
     lastName: "",
     email: "",
     role: "",
+    password: "",
+    skillName: "",
+    experienced: "",
   };
 
   logKeyValuePayers(group: FormGroup = this.registrationForm): void {
@@ -158,8 +180,7 @@ export class RegistraionComponent implements OnInit {
   onSubmit(): void {
     this.mapFormDataToUserModel();
     this.logKeyValuePayers(this.registrationForm);
-    console.log(this.registrationForm.value);
-    if (this.registrationForm.dirty || this.registrationForm.invalid) {
+    if (this.registrationForm.dirty && this.registrationForm.valid) {
       this.uniqueEmailCheck(this.user.email).subscribe((uniqueEmail) => {
         if (uniqueEmail || this.user.id) {
           if (this.user.id) {
