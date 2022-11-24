@@ -27,12 +27,11 @@
     {
       "firstName": "anayat",
       "lastName": "khan",
-      "email": "a@dell.com",
       "password": "123456",
       "role": "admin",
       "skills": {
         "skillName": "java",
-        "experience": "1"
+        "experience": 10
       },
       "id": 4
     },
@@ -272,6 +271,18 @@
       "skills": {
         "skillName": "",
         "experience": "1"
+      },
+      "role": "admin"
+    },
+    {
+      "id": 27,
+      "firstName": "akkk",
+      "lastName": "khan",
+      "password": "123456",
+      "email": "ak@dell.com",
+      "skills": {
+        "skillName": "java",
+        "experience": 3
       },
       "role": "admin"
     }
