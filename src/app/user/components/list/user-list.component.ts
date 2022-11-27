@@ -1,4 +1,10 @@
-import { Component, OnInit } from "@angular/core";
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+  ViewChildren,
+} from "@angular/core";
 import { ActivatedRoute, Route, Router } from "@angular/router";
 import { IUser } from "../../IUser";
 import { UserService } from "../../user.service";
@@ -10,25 +16,30 @@ import { UserService } from "../../user.service";
 })
 export class UserListComponent implements OnInit {
   users: IUser[];
+  totalUsers: IUser[];
+  activePageNumber: number = 0;
+  @ViewChild("teams") el: ElementRef;
+
   constructor(
     private _useService: UserService,
     private _router: Router,
     private _route: ActivatedRoute
   ) {}
 
+  displayActivePageNumber(activeNumber: number) {
+    this.activePageNumber = activeNumber;
+    this._useService.getUsers(activeNumber, 5).subscribe((userList) => {
+      this.users = userList;
+      this.onSelected(this.el.nativeElement.value);
+    });
+  }
+
   ngOnInit() {
-    //as it is observable so we need to subscribe on it
-    //now we are using resolver so we dont need to use service here
-    // this._useService
-    //   .getUsers()
-    //   .subscribe((userList) => (this.users = userList));
-    this.users = this._route.snapshot.data["userList"];
-    this.onSelected('admin');
-    console.log(this.users);
+    this.totalUsers = this._route.snapshot.data["userList"];
   }
 
   editUser(user: IUser) {
-    this._router.navigate(["edit" , user.id])
+    this._router.navigate(["edit", user.id]);
   }
 
   onSelected(selectedvalue: string) {
@@ -46,7 +57,6 @@ export class UserListComponent implements OnInit {
 
   deleteUser(user: IUser) {
     this._useService.deleteUser(user.id).subscribe(() => {
-      console.log(`employee id  ${user.id} is deleted`);
       const i = this.users.findIndex((e) => e.id === user.id);
       if (i !== -1) {
         this.users.splice(i, 1);

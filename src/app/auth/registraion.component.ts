@@ -10,7 +10,7 @@ import {
 } from "@angular/forms";
 import { DISABLED } from "@angular/forms/src/model";
 import { ActivatedRoute, Router } from "@angular/router";
-import { Console } from "console";
+// import { Console } from "console";
 import { Observable, of, Subject } from "rxjs";
 import { AlertService } from "../services/alert.service";
 import { IUser } from "../user/IUser";
@@ -195,7 +195,7 @@ export class RegistraionComponent implements OnInit {
             });
           }
         } else {
-          this._alert.error("plese Enter a unique Email", true);
+          this._alert.error("plese Enter an unique Email", true);
         }
       });
     } else {

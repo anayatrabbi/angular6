@@ -13,15 +13,13 @@ export class AuthenticationService {
     private router: Router,
     private http: HttpClient,
     private userService: UserService,
-    private alertService : AlertService,
+    private alertService: AlertService
   ) {}
 
   login(logInuser) {
-
     return this.userService.getUsers().subscribe((data) => {
       let validUser = false;
       data.map((data) => {
-        console.log(data);
         if (
           data.email == logInuser.email &&
           data.password == logInuser.password
@@ -36,7 +34,6 @@ export class AuthenticationService {
               id: data.id,
             })
           );
-          console.log("validate data", data);
           if (data.role == "admin") {
             this.router.navigate(["/user"]);
           } else if (data.role == "user") {
@@ -44,11 +41,10 @@ export class AuthenticationService {
           }
         }
       });
-      if(validUser){
-        this.alertService.success("welcome to user portal" , false);
-      }
-      else{
-        this.alertService.error("Invalid user" , true)
+      if (validUser) {
+        this.alertService.success("welcome to user portal", false);
+      } else {
+        this.alertService.error("Invalid user", true);
       }
     });
   }

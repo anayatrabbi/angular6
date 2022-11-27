@@ -13,7 +13,6 @@ export class UserLayoutComponent implements OnInit {
   isUser: boolean = false;
   ngOnInit() {
     let currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    console.log(currentUser);
     if (currentUser.role == "admin") {
       this.isAdmin = true;
     } else {

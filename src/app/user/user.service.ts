@@ -5,6 +5,7 @@ import {
   HttpClient,
   HttpErrorResponse,
   HttpHeaders,
+  HttpParams,
 } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
@@ -15,27 +16,14 @@ import { IUser } from "./IUser";
 @Injectable()
 export class UserService {
   constructor(private _httpClient: HttpClient) {}
-  private listOfUser: IUser[] = [
-    {
-      id: 1,
-      firstName: "anayat",
-      lastName: "khan",
-      email: "ana@asthait.com",
-      password: "12345",
-      role: "admin",
-      skills: 
-        {
-          skillName: "c#",
-          experience: 3,
-        },
-    },
-  ];
 
   baseUrl = "http://localhost:3000/user";
   //we need to use observable as at real world we will get data from a server
   //and angular retrun observable
-  getUsers(): Observable<IUser[]> {
-    return this._httpClient.get<IUser[]>(this.baseUrl);
+  getUsers(page?: number, pageSize?: number): Observable<IUser[]> {
+    return this._httpClient.get<IUser[]>(
+      `${this.baseUrl}?_page=${page}&_limit=${pageSize}`
+    );
     // return of(this.listOfUser);
   }
 
@@ -68,18 +56,12 @@ export class UserService {
   }
 
   addUser(user: IUser): Observable<IUser> {
-    console.log("registration method is callled", user);
-    // this.listOfUser.push(user);
     return this._httpClient.post<IUser>(this.baseUrl, user, {
       headers: new HttpHeaders({
         "Content-Type": "application/json",
       }),
     });
   }
-
-  // registerUser() {
-  //   console.log("lets register the value");
-  // }
 }
 
 //aftere creating a service to use we need to register it

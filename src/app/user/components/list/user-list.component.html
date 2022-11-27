@@ -36,4 +36,9 @@
       </tr>
     </tbody>
   </table>
+  <app-pagination
+    [totalRecord]="totalUsers.length"
+    [recordsPerPage]="5"
+    (onPageChange)="displayActivePageNumber($event)"
+  ></app-pagination>
 </div>

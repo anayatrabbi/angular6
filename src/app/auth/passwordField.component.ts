@@ -55,9 +55,7 @@ export class InputPasswordComponent
   onChange = (value: number) => {};
   onTouch = () => {};
 
-  ngOnInit() {
-    console.log(this.quantity);
-  }
+  ngOnInit() {}
 
   onAdd() {
     this.quantity += 1;

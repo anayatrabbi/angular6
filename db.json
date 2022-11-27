@@ -74,13 +74,85 @@
     },
     {
       "id": 7,
-      "firstName": "aaaa",
-      "lastName": "aaaa",
+      "firstName": "zahir ",
+      "lastName": "vai",
       "password": "123456",
       "email": "aa@asthait.com",
       "skills": {
-        "skillName": "fa",
+        "skillName": "refactoring",
         "experience": 2
+      },
+      "role": "user"
+    },
+    {
+      "id": 8,
+      "firstName": "fahim",
+      "lastName": "bappy",
+      "password": "123456",
+      "email": "fb@asthait.com",
+      "skills": {
+        "skillName": "marketing specialist",
+        "experience": 4
+      },
+      "role": "admin"
+    },
+    {
+      "id": 9,
+      "firstName": "tahrima",
+      "lastName": "taslin",
+      "password": "123456",
+      "email": "tt@asthait.com",
+      "skills": {
+        "skillName": "lawyer",
+        "experience": 1
+      },
+      "role": "admin"
+    },
+    {
+      "id": 10,
+      "firstName": "tonmoy",
+      "lastName": "ahmed",
+      "password": "123456",
+      "email": "ta@asthait.com",
+      "skills": {
+        "skillName": "admin",
+        "experience": 2
+      },
+      "role": "admin"
+    },
+    {
+      "id": 11,
+      "firstName": "osama",
+      "lastName": "alom",
+      "password": "123456",
+      "email": "oa@asthait.com",
+      "skills": {
+        "skillName": "javascript",
+        "experience": 2
+      },
+      "role": "admin"
+    },
+    {
+      "id": 12,
+      "firstName": "osama",
+      "lastName": "alam",
+      "password": "123456",
+      "email": "oa@asthait.com",
+      "skills": {
+        "skillName": "javascript",
+        "experience": 2
+      },
+      "role": "user"
+    },
+    {
+      "id": 13,
+      "firstName": "real",
+      "lastName": "khan",
+      "password": "123456",
+      "email": "oa@asthait.com",
+      "skills": {
+        "skillName": "ui",
+        "experience": 3
       },
       "role": "admin"
     }
