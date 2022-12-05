@@ -29,12 +29,10 @@ export class UserListComponent implements OnInit {
 
   displayActivePageNumber(activeNumber: number) {
     this.activePageNumber = activeNumber;
-    if (this.activePageNumber > 1) {
-      this._useService.getUsers(activeNumber, 5).subscribe((userList) => {
-        this.users = userList;
-        this.onSelected(this.el.nativeElement.value);
-      });
-    }
+    this._useService.getUsers(activeNumber, 5).subscribe((userList) => {
+      this.users = userList;
+      this.onSelected(this.el.nativeElement.value);
+    });
   }
 
   ngOnInit() {

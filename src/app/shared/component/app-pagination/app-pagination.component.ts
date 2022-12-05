@@ -24,13 +24,15 @@ export class AppPaginationComponent implements OnInit, OnChanges {
   public pages: number[] = [];
   activePage: number;
 
-  ngOnInit() {}
-
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnInit() {
     const pageCount = this.getPageCount();
     this.pages = this.getArrayOfPage(pageCount);
     this.activePage = 1;
-    this.onPageChange.emit(1);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
+    // if(changes.)
   }
 
   private getPageCount(): number {
