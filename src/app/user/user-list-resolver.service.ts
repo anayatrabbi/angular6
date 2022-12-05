@@ -4,18 +4,32 @@ import {
   Resolve,
   RouterStateSnapshot,
 } from "@angular/router";
-import { Observable } from "rxjs";
+import { forkJoin, Observable, of } from "rxjs";
+import { mergeMap, map } from "rxjs/operators";
 import { IUser } from "./IUser";
 import { UserService } from "./user.service";
 
 @Injectable()
-export class UserListResolverService implements Resolve<IUser[]> {
+export class UserListResolverService implements Resolve<any> {
   constructor(private _userService: UserService) {}
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): Observable<IUser[]> {
-    return this._userService.getUsers();
+  ): Observable<any> {
+    return forkJoin([
+      this._userService.getUsers(),
+      this._userService.getAllUsers(),
+    ]).pipe(
+      mergeMap((x) => {
+        if (x) {
+          let result: any = {
+            users: x[0],
+            count: x[1].length,
+          };
+          return of(result);
+        }
+      })
+    );
   }
 }
 

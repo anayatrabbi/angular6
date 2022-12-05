@@ -17,7 +17,7 @@ export class AuthenticationService {
   ) {}
 
   login(logInuser) {
-    return this.userService.getUsers().subscribe((data) => {
+    return this.userService.getAllUsers().subscribe((data) => {
       let validUser = false;
       data.map((data) => {
         if (

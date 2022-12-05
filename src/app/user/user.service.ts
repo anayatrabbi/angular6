@@ -20,11 +20,17 @@ export class UserService {
   baseUrl = "http://localhost:3000/user";
   //we need to use observable as at real world we will get data from a server
   //and angular retrun observable
-  getUsers(page?: number, pageSize?: number): Observable<IUser[]> {
+  getUsers(page: number = 1, pageSize: number= 5): Observable<IUser[]> {
     return this._httpClient.get<IUser[]>(
       `${this.baseUrl}?_page=${page}&_limit=${pageSize}`
     );
     // return of(this.listOfUser);
+  }
+
+  getAllUsers(): Observable<IUser[]> {
+    return this._httpClient.get<IUser[]>(
+      `${this.baseUrl}`
+    );
   }
 
   private handleError(errorResponse: HttpErrorResponse) {

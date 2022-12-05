@@ -16,7 +16,8 @@ import { UserService } from "../../user.service";
 })
 export class UserListComponent implements OnInit {
   users: IUser[];
-  totalUsers: IUser[];
+  userList: any;
+  totaluser: number;
   activePageNumber: number = 0;
   @ViewChild("teams") el: ElementRef;
 
@@ -28,14 +29,18 @@ export class UserListComponent implements OnInit {
 
   displayActivePageNumber(activeNumber: number) {
     this.activePageNumber = activeNumber;
-    this._useService.getUsers(activeNumber, 5).subscribe((userList) => {
-      this.users = userList;
-      this.onSelected(this.el.nativeElement.value);
-    });
+    if (this.activePageNumber > 1) {
+      this._useService.getUsers(activeNumber, 5).subscribe((userList) => {
+        this.users = userList;
+        this.onSelected(this.el.nativeElement.value);
+      });
+    }
   }
 
   ngOnInit() {
-    this.totalUsers = this._route.snapshot.data["userList"];
+    this.userList = this._route.snapshot.data["userList"];
+    this.users = this.userList.users;
+    this.totaluser = this.userList.count;
   }
 
   editUser(user: IUser) {
